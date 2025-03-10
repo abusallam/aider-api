@@ -22,6 +22,7 @@ RUN pip install virtualenv
 RUN python3 -m venv .venv
 RUN .venv/bin/pip install uv
 RUN .venv/bin/uv pip install --upgrade pip
+RUN rm -rf .venv/lib/python3.11/site-packages/*
 RUN .venv/bin/uv pip install -r requirements.txt
 
 # Stage 2: Production stage (lighter, optimized for runtime)
