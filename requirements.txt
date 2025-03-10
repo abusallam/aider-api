@@ -1,6 +1,6 @@
 fastapi
-uvicorn
-gunicorn
+uvicorn==0.30.0
+gunicorn==23.0.0
 aider
 requests
 pydantic
