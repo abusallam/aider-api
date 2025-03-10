@@ -32,6 +32,7 @@ FROM python:3.11-slim as production-stage
 # Set environment variables for production
 ENV PYTHONUNBUFFERED=1
 ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV PATH="/app/.venv/bin:${PATH}"
 
 # Set working directory
 WORKDIR /app
