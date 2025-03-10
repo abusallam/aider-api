@@ -1,0 +1,18 @@
+# Python
+*.pyc
+*.pyo
+__pycache__
+
+# Environment files
+.env
+
+# Docker
+.dockerignore
+
+# IDE specific
+.vscode/
+.idea/
+
+# Other
+*.db
+*.sqlite3

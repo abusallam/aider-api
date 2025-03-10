@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+gunicorn
+aider
+requests
+pydantic
+psycopg2-binary
