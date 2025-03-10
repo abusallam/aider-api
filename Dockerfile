@@ -24,9 +24,12 @@ RUN .venv/bin/pip install uv
 RUN .venv/bin/uv pip install --upgrade pip
 RUN rm -rf .venv/lib/python3.11/site-packages/*
 RUN .venv/bin/uv pip install -r requirements.txt
+RUN .venv/bin/pip install -U aider-chat
 
 # Stage 2: Production stage (lighter, optimized for runtime)
 FROM python:3.11-slim as production-stage
+
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Set environment variables for production
 ENV PYTHONUNBUFFERED=1
@@ -43,5 +46,5 @@ RUN pip install gunicorn uvicorn
 # Expose the port the application will run on
 EXPOSE 8000
 
-# Command to run the app using Gunicorn + Uvicorn worker
-CMD ["gunicorn", "server:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+# Command to run the app using Aider
+CMD ["aider", "--browser"]
