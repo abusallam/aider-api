@@ -5,3 +5,4 @@ aider
 requests
 pydantic
 psycopg2-binary
+websockets
