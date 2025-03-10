@@ -18,9 +18,10 @@ WORKDIR /app
 COPY . /app/
 
 # Install dependencies using the uv package manager
-RUN pip install uv virtualenv
+RUN pip install virtualenv
 RUN python3 -m venv .venv
 RUN .venv/bin/pip install uv
+RUN .venv/bin/uv pip install --upgrade pip
 RUN .venv/bin/uv pip install -r requirements.txt
 
 # Stage 2: Production stage (lighter, optimized for runtime)
