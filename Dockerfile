@@ -24,7 +24,7 @@ RUN .venv/bin/pip install uv
 RUN .venv/bin/uv pip install --upgrade pip
 RUN rm -rf .venv/lib/python3.11/site-packages/*
 RUN .venv/bin/uv pip install -r requirements.txt
-RUN .venv/bin/pip install -U aider-chat
+RUN .venv/bin/uv pip install -U aider-chat
 
 # Stage 2: Production stage (lighter, optimized for runtime)
 FROM python:3.11-slim as production-stage
