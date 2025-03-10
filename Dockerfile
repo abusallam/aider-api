@@ -29,10 +29,9 @@ RUN .venv/bin/pip install -U aider-chat
 # Stage 2: Production stage (lighter, optimized for runtime)
 FROM python:3.11-slim as production-stage
 
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
-
 # Set environment variables for production
 ENV PYTHONUNBUFFERED=1
+ENV OPENAI_API_KEY=${OPENAI_API_KEY}
 
 # Set working directory
 WORKDIR /app
