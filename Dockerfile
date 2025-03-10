@@ -20,8 +20,7 @@ COPY . /app/
 # Install dependencies using the uv package manager
 RUN pip install virtualenv
 RUN python3 -m venv .venv
-RUN .venv/bin/pip install uv
-RUN .venv/bin/uv pip install -r requirements.txt
+RUN .venv/bin/pip install -r requirements.txt
 
 # Stage 2: Production stage (lighter, optimized for runtime)
 FROM python:3.11-slim as production-stage
