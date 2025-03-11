@@ -1,5 +1,6 @@
 import os
-from fastapi import FastAPI, Depends, HTTPException, Header, WebSocket
+from fastapi import FastAPI, Depends, HTTPException, Header, WebSocket, Request
+from fastapi.responses import HTMLResponse
 import requests
 import logging
 
@@ -57,9 +58,11 @@ def verify_token(authorization: str = Header(None)):
         raise HTTPException(status_code=401, detail="Invalid token")
     return True
 
-@app.get("/")
-def read_root():
-    return {"message": "API is running!"}
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    with open("index.html") as f:
+        html_content = f.read()
+    return HTMLResponse(content=html_content, status_code=200)
 
 @app.get("/secure-endpoint")
 def secure_data(authenticated: bool = Depends(verify_token)):
