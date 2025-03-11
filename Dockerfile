@@ -44,7 +44,7 @@ COPY --from=build-stage /app /app
 RUN pip install gunicorn uvicorn
 
 # Expose the port the application will run on
-EXPOSE 8000
+EXPOSE 8501
 
 # Command to run the app using Aider
 CMD ["aider", "--browser"]
