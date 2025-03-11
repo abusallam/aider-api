@@ -15,9 +15,25 @@ async def websocket_endpoint(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_text()
-            # Process the command and send the response back
-            response = f"You sent: {data}"
-            await websocket.send_text(response)
+            # Send request to Open Web UI model endpoint
+            headers = {
+                "Authorization": f"Bearer {API_TOKEN}",
+            }
+            data = {
+                "model": MODEL_NAME,
+                "prompt": data,
+            }
+            try:
+                # Make the POST request to Open Web UI's model endpoint
+                response = requests.post(f"{OPEN_WEB_UI_URL}/api/chat", headers=headers, json=data)
+                response.raise_for_status()  # Raise an exception for HTTP error responses
+                result = response.json()
+                response_text = result.get("choices")[0]["text"]
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Error with LLM provider: {str(e)}")
+                response_text = "Error with the LLM provider"
+            
+            await websocket.send_text(response_text)
     except Exception as e:
         logger.error(f"WebSocket error: {e}")
     finally:

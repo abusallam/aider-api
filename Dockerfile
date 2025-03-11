@@ -31,7 +31,9 @@ FROM python:3.11-slim as production-stage
 
 # Set environment variables for production
 ENV PYTHONUNBUFFERED=1
-ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV OPEN_WEB_UI_URL=https://open-webui.consulting.sa/
+ENV API_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImZjMzE2ZmZlLTBkNTctNDE2YS04MTdiLTIyNjQyMmM0ZDQ5MCJ9.-LQ3n1aIznBJoJ1sxTvR8l3NtnXYx7nYUYJczSJs7H8
+ENV MODEL_NAME=gpt-3.5-turbo
 ENV PATH="/app/.venv/bin:${PATH}"
 
 # Set working directory
