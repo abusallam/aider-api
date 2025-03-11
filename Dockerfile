@@ -46,5 +46,5 @@ RUN pip install gunicorn uvicorn
 # Expose the port the application will run on
 EXPOSE 8501
 
-# Command to run the app using Aider
-CMD ["aider", "--browser"]
+# Command to run the app using Gunicorn + Uvicorn worker
+CMD ["gunicorn", "server:app", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
