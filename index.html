@@ -15,7 +15,7 @@
         const aiderSend = document.getElementById('aider-send');
         const aiderOutput = document.getElementById('aider-output');
 
-        const ws = new WebSocket('ws://localhost:8000/ws');
+        const ws = new WebSocket(`ws://${window.location.host}/ws`);
 
         ws.onopen = () => {
             console.log('Connected to WebSocket');
